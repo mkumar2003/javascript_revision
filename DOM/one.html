@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>DOM learning</title>
+    <style>
+        .bg-black{
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <div >
+        <h1  id="title" class="heading">DOM learning on Chai aur code <span style="display: none;">test text</span></h1>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <h2>Lorem ipsum dolor sit.</h2>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <input type="password" name="" id="">
+
+        <ul>
+            <li class="list-item">one</li>
+            <li class="list-item">two</li>
+            <li class="list-item">three</li>
+            <li class="list-item">four</li>
+        </ul>
+    </div>
+
+    <script>
+        //accessing element by id
+        document.getElementById('title')
+        
+        //accessing other attributes
+        document.getElementById('title').id //for id
+        document.getElementById('title').className //for accessing clas name
+        document.getElementById('title').getAttribute('class')  //another way
+
+        //changing attributes
+        document.getElementById('title').setAttribute('class','test class') //changes class from heading to test class.
+
+        //applying style using DOM
+        //we can store output in some variable
+
+        const title = document.getElementById('title')
+        title.style.backgroundColor = "red"
+        title.style.padding = "20px"
+        title.style.borderRadius = "30px"
+        //all these styles are added in form of inline styling in element with id = title.
+
+    //diff between innerHTML , textContent , Innertext
+    // innerHTML deals with HTML content, innerText deals with visible text content while considering styles, and textContent deals with raw text content without regard to HTML markup or styles.
+    
+    //for eg if some due to some css if text is hidden then it will not be visible in innerText
+
+    //querySelectors
+    document.querySelector('h2')
+    //it selects first encountered h2 tag only
+
+    document.querySelector(".firstclass") //select class
+    document.querySelector("#firstid") //select id
+
+    //use case in case of list tag
+    const myUl = document.querySelector('ul')
+    const myLi = myUl.querySelector('li')
+    myLi.style.backgroundColor = "red"
+    myLi.innerText = "first element"
+    //content of first li tag is changed
+
+    //for selecting all li at once we use querySelectorall which returns a node list which is similar to array and have forEach loop in its prototype
+    const tempLiList = document.querySelectorAll('li')
+    //returns nodelist containing all li tags
+
+    //styling in nodelist
+    tempLiList[0].style.color = "red"
+    tempLiList[1].style.color = "red"
+
+    //to perform opreations on all li tags at once
+    tempLiList.forEach(l => {
+        l.style.color = "red"
+    });
+
+
+
+    </script>
+</body>
+</html>
