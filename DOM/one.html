@@ -78,9 +78,16 @@
 
     //to perform opreations on all li tags at once
     tempLiList.forEach(l => {
-        l.style.color = "red"
+        l.style.color = "yellow"
     });
+ 
+    //selecting element by className
+    const tempClassList = document.getElementsByClassName('list-item')
+    //it returns an HTMLCollection to tempClassList
 
+    //converting nodeList or HTMLCollection to array
+    const myNewArray = Array.from(tempClassList)
+    console.log(myNewArray);
 
 
     </script>
