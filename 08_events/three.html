@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #414141;">
+    <h1>Chai aur code</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    
+    const changeText = function(){
+        console.log("manish",Date.now())
+    }
+
+    let changeMe;
+
+    document.querySelector('#start').addEventListener('click', function(){
+       changeMe =  setInterval(changeText, 1000)
+    })
+
+    document.querySelector('#stop').addEventListener('click',function(){
+        clearInterval(changeMe)
+        console.log("Stopped Clicked");
+    })
+</script>
+</html>

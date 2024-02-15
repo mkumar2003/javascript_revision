@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlimited Color Changer.</title>
+</head>
+<body style="background-color: #414141; color: #fff;">
+    <h3>Start should change background color every second</h3>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        //generate random color
+
+        const randomColor = function(){
+            const hex = '0123456789ABCDEF';
+            let color = '#';
+            for(let i = 0 ; i  < 6 ; i++)
+            {
+                color += hex[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        };
+      
+        let intervalId;
+        
+        const startChangingColor = function startChangingColor(){
+            if(!intervalId)
+            {
+                intervalId = setInterval(changeBgColor,1000)
+            }
+
+            function changeBgColor(){
+                document.body.style.backgroundColor = randomColor();
+            }
+        };
+
+        const stopChangingColor = function stopChangingColor(){
+            clearInterval(intervalId);
+            intervalId = null;   //just for better performance so that 
+                            //it is reset and memory is released.
+        };
+
+
+
+    document.querySelector("#start").addEventListener('click',startChangingColor)
+    document.querySelector("#stop").addEventListener('click',stopChangingColor)
+
+//By using if(!intervalId) condition, you ensure that you don't create multiple intervals if the "Start" button is clicked multiple times without clicking the "Stop" button in between. It helps prevent unintentional stacking of intervals and contributes to better performance and resource management.
+    </script>
+</body>
+</html>
