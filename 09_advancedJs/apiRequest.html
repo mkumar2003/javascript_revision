@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Request.</title>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: #212121;
+        }
+
+        #card {
+            width: 700px;
+            height: 500px;
+            border: solid 2px black;
+            margin : 0 auto;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap:50px;
+        }
+        #img
+        {
+            border-radius: 0.375rem;
+            margin : 0 auto;
+        }
+        .photo{
+            height: 200px;
+            width: 150px; 
+        }
+        #details
+        {
+            margin : 0 auto;
+        }
+        
+        /* 0	UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete. */
+
+    </style>
+</head>
+<body>
+    <div id="card">
+        <div id="img">
+            <img class="photo" src="" alt="">
+        </div>
+        <div id="details"></div>
+        <button id="btn">Get Details</button>
+    </div>
+
+    <script>
+
+        const img = document.querySelector(".photo")
+        const details = document.querySelector("#details")
+        const btn = document.querySelector("#btn").addEventListener('click',function(e){
+            const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('GET', requestUrl)
+        xhr.onreadystatechange = function(){
+            console.log(xhr.readyState);
+            if (xhr.readyState === 4) {
+                const data = JSON.parse(this.responseText)
+                console.log(data);
+                img.src = data.avatar_url;
+                details.innerHTML = data.followers;
+                details.style.color = "white";
+            }
+        }
+        xhr.send();
+        })
+
+        
+    </script>
+</body>
+</html>
